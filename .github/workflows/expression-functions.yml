@@ -49,6 +49,8 @@ jobs:
 
       - name: The job has succeeded
         if: ${{ success() }}
+        run: echo "The job has succeeded."
 
       - name: The job has failed
         if: ${{ failure() }}
+        run: echo "The job has failed."
