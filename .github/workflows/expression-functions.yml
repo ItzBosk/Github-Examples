@@ -36,7 +36,8 @@ jobs:
           echo "Event context in JSON: ${{ toJSON(github.event) }}"
         
       - name: Print job ID
-        run: echo 'Job ID: ${{ github.job }}'
+        run: |
+          echo "Job ID: ${{ github.job }}"
 
       - name: Parse JSON string
         run: echo 'Parsed JSON: ${{ fromJSON('{"hello":"world"}').hello }}'
