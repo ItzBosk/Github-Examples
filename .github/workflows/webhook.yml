@@ -16,4 +16,5 @@ jobs:
         run: echo '${{ toJson(github.event) }}'
 
       - name: Run a script
-        run: echo 'Event of type: ${{ github.event.action }}'
+        run: |
+          echo "Event of type: ${{ github.event.action }}"
