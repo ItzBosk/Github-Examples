@@ -12,4 +12,4 @@ jobs:
           ACTION: ${{ github.action }}
         run: |
           echo "Action: ${ACTION}"
-          echo "Actor: ${{ github.actor }}
+          echo "Actor: ${{ github.actor }}"
