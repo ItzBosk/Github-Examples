@@ -25,8 +25,10 @@ jobs:
       - name: Print Labels with Script
         run: |
           echo '${{ toJson(github.event.issue.labels) }}' | jq -r '.[] | .name' | paste -sd "," -
-      - name: Convert job context to JSON
-        run: echo 'Job context in JSON: ${{ toJSON(github.event) }}'
+      - name: Convert event context to JSON
+        run: echo 'Event context in JSON: ${{ toJSON(github.event) }}'
+      - name: Print job ID
+        run: echo 'Job ID: ${{ github.job }}'
       - name: Parse JSON string
         run: echo 'Parsed JSON: ${{ fromJSON('{"hello":"world"}').hello }}'
       - name: Hash files
