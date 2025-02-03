@@ -12,14 +12,14 @@ jobs:
   demo-job:
     runs-on: ubuntu-latest
     outputs:
-      processed_name: ${{ steps.step1.outputs.processed_name }}
+      processed_name: ${{ steps.step1.outputs.processed_name }} # Definisci l'output del job
     steps:
       - name: Use Inputs and Generate Output
         id: step1
         run: |
           echo "Processing user: ${{ github.event.inputs.user_name }}"
-          # Scrivi l'output in un environment file
-          echo "processed_name=Processed: ${{ github.event.inputs.user_name }}" >> $GITHUB_ENV
+          # Usa un file per salvare l'output dello step
+          echo "processed_name=Processed: ${{ github.event.inputs.user_name }}" >> $GITHUB_OUTPUT
 
   another-job:
     runs-on: ubuntu-latest
