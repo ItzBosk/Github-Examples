@@ -1,0 +1,35 @@
+name: Cache Example
+
+on: ['push']
+
+jobs:
+  cache-job:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Restore cache (if available)
+      - name: Restore cache
+        id: cache-restore
+        uses: actions/cache@v4
+        with:
+          path: my-cache-data
+          key: ${{ runner.os }}-my-cache-key    # Unique cache key
+          restore-keys: |
+            ${{ runner.os }}-my-cache-
+
+      # Step 3: Generate data if cache is missing
+      - name: Generate cache data
+        if: steps.cache-restore.outputs.cache-hit != 'true'
+        run: |
+          echo "Generating cache data..."
+          mkdir -p my-cache-data
+          echo "This is cached data" > my-cache-data/data.txt
+
+      # Step 4: Use cached data
+      - name: Use cached data
+        run: |
+          echo "Cached data:"
+          cat my-cache-data/data.txt
